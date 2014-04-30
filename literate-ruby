@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+module LiterateRuby
+  def self.run(path)
+    lines = parse(File.new(path))
+    eval(lines.join, TOPLEVEL_BINDING, path)
+  end
+
+  private
+
+  PARSE_PATTERN = /^(>|[ ]{2})/
+
+  def self.parse(io)
+    io.readlines.each_with_object([]) do |line, lines|
+      lines << line.gsub(PARSE_PATTERN, '') if line =~ PARSE_PATTERN
+    end
+  end
+end
+
+if $0 == __FILE__
+  path = ARGV.shift
+  abort("Usage:\n  ./literate-ruby [path]") if path.nil?
+  LiterateRuby.run(path)
+end

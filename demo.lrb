@@ -1,0 +1,14 @@
+You can use indentation:
+
+    def hello(name)
+        "Hello, #{name}!"
+    end
+
+    puts hello("Daniël")
+
+or greater than sign:
+
+> def bye(name)
+>   "Bye, #{name}!"
+> end
+> puts bye("Daniël")
